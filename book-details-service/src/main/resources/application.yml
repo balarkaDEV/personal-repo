@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/book
+    username: root
+    password: root
+  jpa:     hibernate:      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    generate-ddl: true
+
+server:  port: 8010
+  #  ssl:#    key-alias: book-master-service
+#   key-store-type: JKS
+#   key-password: password
+#   key-store-password: password
+#   key-store: classpath:book-master-service.jks
+  
+base-url: '/service/book'
