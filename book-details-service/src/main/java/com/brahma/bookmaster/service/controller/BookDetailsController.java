@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,15 +18,16 @@ import com.brahma.bookmaster.service.business.BookDetailsBusiness;
 import com.brahma.bookmaster.service.model.BookMaster;
 
 @RestController
-@RequestMapping(value="${base-url}")
+@RequestMapping(value="${service.baseuri}")
 public class BookDetailsController {
 
 	@Autowired
 	private BookDetailsBusiness bookDetailsBusiness;
 	
 	@PostMapping(value="/save")
-	public BookMaster saveBookMaster(@RequestBody final BookMaster bookMasterList){
-		return bookDetailsBusiness.saveBookMaster(bookMasterList);
+	public ResponseEntity<BookMaster> saveBookMaster(@RequestBody final BookMaster bookMasterList){
+		BookMaster response = bookDetailsBusiness.saveBookMaster(bookMasterList);
+		return new ResponseEntity<BookMaster>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/{id}")
@@ -33,12 +36,14 @@ public class BookDetailsController {
 	}
 	
 	@GetMapping(value="/")
-	public BookMaster getBookByTitleAndOrAuthor(@RequestParam String title, String author) {
-		return bookDetailsBusiness.getBookByTitleAndOrAuthor(title,author);
+	public ResponseEntity<BookMaster> getBookByTitleAndOrAuthor(@RequestParam String title, String author) {
+		BookMaster response = bookDetailsBusiness.getBookByTitleAndOrAuthor(title,author);
+		return new ResponseEntity<BookMaster>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/all")
-	public List<BookMaster> getAllBooks(){
-		return bookDetailsBusiness.getAll();
+	public ResponseEntity<List<BookMaster>> getAllBooks(){
+		List<BookMaster> list = bookDetailsBusiness.getAll();
+		return new ResponseEntity<List<BookMaster>>(list, HttpStatus.OK);
 	}
 }
