@@ -4,12 +4,18 @@ spring:
     url: jdbc:mysql://localhost:3306/book
     username: root
     password: root
-  jpa:     hibernate:      ddl-auto: update
+  jpa: 
+    hibernate:
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     generate-ddl: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
-server:  port: 8010
+server:
+  port: 8010
   
 bookdetails:
   info:    

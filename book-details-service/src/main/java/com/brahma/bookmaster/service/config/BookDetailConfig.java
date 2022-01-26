@@ -22,7 +22,7 @@ public class BookDetailConfig {
 	@Value("${bookdetails.info.service.description}")
 	private String serviceDesc;
 	
-	@Value("${bookdetails.info.service.activeversion}")
+	@Value("${service.activeversion}")
 	private String version;
 	
 	@Value("${bookdetails.info.service.usage}")
