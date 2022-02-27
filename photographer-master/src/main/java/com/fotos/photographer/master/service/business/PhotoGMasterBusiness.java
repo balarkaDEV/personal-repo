@@ -18,7 +18,7 @@ public class PhotoGMasterBusiness {
         return photoGMasterRepository.findAll();
     }
 
-    public Optional<PhotographerMaster> findRecordById(int id){
+    public Optional<PhotographerMaster> findRecordById(long id){
         return photoGMasterRepository.findById(id);
     }
 
