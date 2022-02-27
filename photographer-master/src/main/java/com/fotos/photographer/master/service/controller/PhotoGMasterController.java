@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(value="${root.service.baseurl}")
+@RequestMapping(value="${root.service.moduleurl}")
 public class PhotoGMasterController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PhotoGMasterController.class);

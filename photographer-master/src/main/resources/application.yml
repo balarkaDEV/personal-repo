@@ -14,5 +14,5 @@ root:
     officialemail: balarka.brahma@gmail.com
     license: Public API Lincense
     baseurl: /service/fotos
-    moduleurl: ${service.baseuri}/${root.service.version}/photographer
+    moduleurl: ${root.service.baseurl}/${root.service.version}/photographer
 

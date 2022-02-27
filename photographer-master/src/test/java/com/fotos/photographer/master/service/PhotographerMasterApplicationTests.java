@@ -30,12 +30,17 @@ class PhotographerMasterApplicationTests {
 	}
 
 	@Test
-	void testFindRecordById(){
+	void testFindRecordById() {
 		long id = 1;
 		Optional<PhotographerMaster> item = photoGMasterBusiness.findRecordById(id);
-		if(item.isPresent())
+		if (item.isPresent())
 			assertThat(item.get().getId()).isEqualTo(id);
 	}
 
-
+	@Test
+	void testFindRecordsByName(){
+		String name = "Balarka Brahma";
+		List<PhotographerMaster> list = photoGMasterBusiness.findRecordsByName(name);
+		assertThat(list.size()).isGreaterThan(0);
+	}
 }

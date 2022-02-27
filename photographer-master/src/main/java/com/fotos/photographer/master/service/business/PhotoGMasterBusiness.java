@@ -25,4 +25,8 @@ public class PhotoGMasterBusiness {
     public PhotographerMaster save(PhotographerMaster photographerMaster) {
         return photoGMasterRepository.save(photographerMaster);
     }
+
+    public List<PhotographerMaster> findRecordsByName(String name){
+        return photoGMasterRepository.findByName(name);
+    }
 }
