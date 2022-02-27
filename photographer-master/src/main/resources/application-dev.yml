@@ -16,3 +16,13 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    com:
+      fotos:
+        photographer:
+          master:
+            service: DEBUG
+    org:
+      springframework: INFO

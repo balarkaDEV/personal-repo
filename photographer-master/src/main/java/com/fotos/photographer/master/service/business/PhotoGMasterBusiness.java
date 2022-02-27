@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PhotoGMasterBusiness {
@@ -15,5 +16,13 @@ public class PhotoGMasterBusiness {
 
     public List<PhotographerMaster> findAllRecords(){
         return photoGMasterRepository.findAll();
+    }
+
+    public Optional<PhotographerMaster> findRecordById(int id){
+        return photoGMasterRepository.findById(id);
+    }
+
+    public PhotographerMaster save(PhotographerMaster photographerMaster) {
+        return photoGMasterRepository.save(photographerMaster);
     }
 }

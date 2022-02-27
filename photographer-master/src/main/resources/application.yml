@@ -6,10 +6,13 @@ root:
   correlationid: photographer-master-service
   service:
     name: Photographer Master Service
-    description: Photographer Master Service to keep the photographer details
+    description: Photographer Master Service to maintain photographer details
     version: v1
     usage: Proprietary Usage
     owner: Balarka Brahma
     website: NA
     officialemail: balarka.brahma@gmail.com
-    license: NA
+    license: Public API Lincense
+    baseurl: /service/fotos
+    moduleurl: ${service.baseuri}/photog/${root.service.version}
+
