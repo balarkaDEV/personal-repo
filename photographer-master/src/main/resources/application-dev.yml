@@ -25,4 +25,7 @@ logging:
           master:
             service: DEBUG
     org:
-      springframework: INFO
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: DEBUG

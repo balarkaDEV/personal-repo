@@ -13,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -25,44 +27,54 @@ public class PhotoGMasterController {
     @Autowired
     private PhotoGMasterBusiness photoGMasterBusiness;
 
-    @Value("${root.correlationid}")
-    private String correlationId;
-
     @GetMapping(value="/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PhotographerMaster>> getAllItem(){
-        LOGGER.info("{} : getAllItem started", correlationId);
+        LOGGER.info("getAllItem started");
         List<PhotographerMaster> list = photoGMasterBusiness.findAllRecords();
 
         if (list.size() == 0)
             throw new PhotoGMasterBusinessException("No Records Found");
 
-        LOGGER.info("{} : getAllItem ended", correlationId);
+        LOGGER.info("getAllItem ended");
         return new ResponseEntity<List<PhotographerMaster>>(list, HttpStatus.OK);
     }
 
     @GetMapping(value="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public Optional<PhotographerMaster> getItemById(@PathVariable long id){
-        LOGGER.info("{} : getItemById started", correlationId);
+        LOGGER.info("getItemById started");
         return photoGMasterBusiness.findRecordById(id);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<PhotographerMaster>> getItemsByName(@RequestParam String name){
-        LOGGER.info("{} : getItemByName started", correlationId);
-        List<PhotographerMaster> list = photoGMasterBusiness.findRecordsByName(name);
+    public ResponseEntity<List<PhotographerMaster>> getItemsByQuery(@RequestParam Map<String, String> queryParams){
+        LOGGER.info("getItemByName started");
+
+        List<PhotographerMaster> list = photoGMasterBusiness.findRecordsByQuery(queryParams);
 
         if (list.size() == 0)
             throw new PhotoGMasterBusinessException("No Records Found");
 
-        LOGGER.info("{} : getItemByName ended", correlationId);
+        LOGGER.info("getItemByName ended");
         return new ResponseEntity<List<PhotographerMaster>>(list, HttpStatus.OK);
     }
 
-    @PostMapping(value="/", produces = MediaType.APPLICATION_JSON_VALUE)
+    /*@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<PhotographerMaster>> getItemsByCityStateCountry(@RequestParam String city, @RequestParam String state, @RequestParam String country){
+        LOGGER.info("{} : getItemsByCityStateCountry started", correlationId);
+        List<PhotographerMaster> list = photoGMasterBusiness.findRecordsByCityStateCountry(city,state,country);
+
+        if (list.size() == 0)
+            throw new PhotoGMasterBusinessException("No Records Found");
+
+        LOGGER.info("{} : getItemsByCityStateCountry ended", correlationId);
+        return new ResponseEntity<List<PhotographerMaster>>(list, HttpStatus.OK);
+    }*/
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PhotographerMaster> saveItem(@RequestBody final PhotographerMaster photographerMaster){
-        LOGGER.info("{} : saveItem started", correlationId);
+        LOGGER.info("saveItem started");
         PhotographerMaster response = photoGMasterBusiness.save(photographerMaster);
-        LOGGER.info("{} : saveItem ended", correlationId);
+        LOGGER.info("saveItem ended");
         return new ResponseEntity<PhotographerMaster>(response, HttpStatus.OK);
     }
 }

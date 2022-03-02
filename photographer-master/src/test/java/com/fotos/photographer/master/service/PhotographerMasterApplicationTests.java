@@ -37,10 +37,10 @@ class PhotographerMasterApplicationTests {
 			assertThat(item.get().getId()).isEqualTo(id);
 	}
 
-	@Test
+	/*@Test
 	void testFindRecordsByName(){
 		String name = "Balarka Brahma";
 		List<PhotographerMaster> list = photoGMasterBusiness.findRecordsByName(name);
 		assertThat(list.size()).isGreaterThan(0);
-	}
+	}*/
 }
