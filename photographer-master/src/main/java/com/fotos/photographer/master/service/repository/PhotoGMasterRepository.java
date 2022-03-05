@@ -12,11 +12,11 @@ import java.util.List;
 public interface PhotoGMasterRepository extends JpaRepository<PhotographerMaster, Long> {
 
     @Query(value = "from PhotographerMaster p where p.name like :name%")
-    public List<PhotographerMaster> findByName(@Param("name") String name);
+    List<PhotographerMaster> findByName(@Param("name") String name);
 
     @Query(value = "from PhotographerMaster p where p.city = :city")
-    public List<PhotographerMaster> findByCity(@Param("city") String city);
+    List<PhotographerMaster> findByCity(@Param("city") String city);
 
     @Query(value = "from PhotographerMaster p where p.name like :name% AND p.city = :city")
-    public List<PhotographerMaster> findByNameAndCity(@Param("name") String name, @Param("city") String city);
+    List<PhotographerMaster> findByNameAndCity(@Param("name") String name, @Param("city") String city);
 }
